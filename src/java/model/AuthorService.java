@@ -15,9 +15,9 @@ import java.util.List;
  * @author Nicholas
  */
 public class AuthorService {
-    Author one = new Author(001,"bob",new Date(95,5,2)); 
-    Author two = new Author(002,"chris",new Date(100,2,7)); 
-    Author three = new Author(003,"evan",new Date(112,10,27)); 
+    private Author one = new Author(001,"bob",new Date(95,5,2)); 
+    private Author two = new Author(002,"chris",new Date(100,2,7)); 
+    private Author three = new Author(003,"evan",new Date(112,10,27)); 
     
     public List getAllAuthors(){
     List authors = new ArrayList();
