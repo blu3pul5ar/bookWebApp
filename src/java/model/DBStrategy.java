@@ -11,6 +11,8 @@ package model;
  */
 
     import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The general contract for all JDBC database access strategy implementations.
@@ -25,4 +27,5 @@ public interface DBStrategy {
             throws ClassNotFoundException, SQLException;
     
     public abstract void closeConnection() throws SQLException;
+    public abstract List<Map<String,Object>> findAllRecords(String tableName, int maxRecords) throws SQLException;
 }
