@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -64,6 +65,23 @@ public class MySqlDBStrategy implements DBStrategy{
             records.add(record);
         }
         return records;
+    }
+     @Override
+    public int deleteRecordbyPrimaryKey(String tableName, String primarykeyName, Object primaryKeyValue) throws SQLException {
+        int NumDeleted = 0;
+        PreparedStatement stmt = null;
+        String sql2 = null;
+        if (primaryKeyValue instanceof String) {
+            sql2 = "= '" + primaryKeyValue + "'";
+        } else {
+            sql2 = "=" + primaryKeyValue;
+        }
+        final String sql = "Delete FROM " + tableName + " WHERE " + primarykeyName + sql2;
+
+        stmt = conn.prepareStatement(sql);
+        NumDeleted = stmt.executeUpdate(sql);
+
+        return NumDeleted;
     }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DBStrategy db = new MySqlDBStrategy();
